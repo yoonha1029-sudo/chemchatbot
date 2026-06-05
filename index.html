@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>화학 반응의 법칙 — 풀이 도우미</title>
+<title>화학 반응의 법칙 - 문제 풀이 챗봇</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -279,8 +279,8 @@
 
 <header>
   <p class="header-label">동원중 3학년 · 1단원</p>
-  <h1>화학 반응의 법칙 <span>풀이 도우미</span></h1>
-  <p class="subtitle">정답 대신 힌트를 드려요. 스스로 풀어보면서 패들렛에 올릴 풀이를 완성해보세요.</p>
+  <h1>화학 반응의 법칙 <span>풀이 챗봇</span></h1>
+  <p class="subtitle">정답 대신 힌트를 줍니다. 스스로 풀어보면서 패들렛에 올릴 풀이를 완성해보세요.</p>
 </header>
 
 <div class="card">
@@ -306,7 +306,7 @@
   <div id="chat-box">
     <div class="empty-state">
       <div class="empty-icon">🧪</div>
-      <div class="empty-text">위에서 문제를 선택하면<br>풀이 도우미가 시작돼요.</div>
+      <div class="empty-text">문제를 선택하세요.</div>
     </div>
   </div>
 
@@ -321,7 +321,7 @@
   </div>
 </div>
 
-<footer>정답은 알려주지 않아요 · 힌트로 스스로 생각해봐요</footer>
+<footer>copyright @yoonha1029</footer>
 
 <script>
 const PROBLEMS = {
@@ -460,18 +460,21 @@ async function callClaude(userMsg) {
 6. 수식은 텍스트로 간단히 표현해 (H2O, Mg:O=3:2 등).`;
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const WORKER_URL = 'dwchatbot.yoonha1029.workers.dev'; // Cloudflare Worker URL 입력
+    const res = await fetch(WORKER_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'gpt-4o-mini',
         max_tokens: 1000,
-        system,
-        messages: history
+        messages: [
+          { role: 'system', content: system },
+          ...history
+        ]
       })
     });
     const data = await res.json();
-    const reply = data.content?.[0]?.text || '응답을 받지 못했어요. 다시 시도해봐요.';
+    const reply = data.choices?.[0]?.message?.content || '응답을 받지 못했어요. 다시 시도해봐요.';
     thinkDiv.textContent = reply;
     thinkDiv.classList.remove('thinking', 'dot-anim');
     history.push({ role: 'assistant', content: reply });
