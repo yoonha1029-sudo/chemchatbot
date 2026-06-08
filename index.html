@@ -7,272 +7,47 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg: #f5f3ee;
-    --surface: #ffffff;
-    --border: #e2dfd8;
-    --accent: #2d5a9e;
-    --accent-light: #e8eef8;
-    --text: #1a1a1a;
-    --text-muted: #6b6b6b;
-    --user-bg: #2d5a9e;
-    --user-text: #ffffff;
-    --bot-bg: #ffffff;
-    --hint-bg: #f0f4fb;
-    --hint-border: #b8cce8;
-    --radius: 12px;
-    --radius-sm: 8px;
+    --bg: #f5f3ee; --surface: #ffffff; --border: #e2dfd8;
+    --accent: #2d5a9e; --text: #1a1a1a; --text-muted: #6b6b6b;
+    --user-bg: #2d5a9e; --user-text: #ffffff; --bot-bg: #ffffff;
+    --hint-bg: #f0f4fb; --hint-border: #b8cce8;
+    --radius: 12px; --radius-sm: 8px;
   }
-
-  body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 24px 16px 40px;
-  }
-
-  header {
-    width: 100%;
-    max-width: 680px;
-    margin-bottom: 20px;
-  }
-
-  .header-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-
-  h1 {
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1.3;
-  }
-
-  h1 span {
-    color: var(--accent);
-  }
-
-  .subtitle {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-top: 4px;
-    line-height: 1.6;
-  }
-
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    width: 100%;
-    max-width: 680px;
-    overflow: hidden;
-  }
-
-  .select-wrap {
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--border);
-    background: #fafaf8;
-  }
-
-  .select-label {
-    font-size: 11px;
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-    display: block;
-  }
-
-  select {
-    width: 100%;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
-    padding: 9px 12px;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--text);
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b6b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    cursor: pointer;
-  }
-
+  body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 24px 16px 40px; }
+  header { width: 100%; max-width: 680px; margin-bottom: 20px; }
+  .header-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 6px; }
+  h1 { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.3; }
+  h1 span { color: var(--accent); }
+  .subtitle { font-size: 13px; color: var(--text-muted); margin-top: 4px; line-height: 1.6; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); width: 100%; max-width: 680px; overflow: hidden; }
+  .select-wrap { padding: 16px 20px; border-bottom: 1px solid var(--border); background: #fafaf8; }
+  .select-label { font-size: 11px; font-family: 'DM Mono', monospace; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 8px; display: block; }
+  select { width: 100%; font-family: 'Noto Sans KR', sans-serif; font-size: 14px; padding: 9px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); color: var(--text); appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b6b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; cursor: pointer; }
   select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
-
-  #chat-box {
-    height: 380px;
-    overflow-y: auto;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    scroll-behavior: smooth;
-  }
-
-  .msg {
-    max-width: 82%;
-    font-size: 14px;
-    line-height: 1.7;
-    padding: 11px 15px;
-    border-radius: var(--radius);
-    word-break: keep-all;
-    animation: fadeUp 0.2s ease;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .bot {
-    background: var(--bot-bg);
-    border: 1px solid var(--border);
-    align-self: flex-start;
-    border-bottom-left-radius: 4px;
-  }
-
-  .user {
-    background: var(--user-bg);
-    color: var(--user-text);
-    align-self: flex-end;
-    border-bottom-right-radius: 4px;
-  }
-
-  .thinking {
-    color: var(--text-muted);
-    font-style: italic;
-    font-size: 13px;
-  }
-
-  .dot-anim::after {
-    content: '';
-    animation: dots 1.2s infinite;
-  }
-
-  @keyframes dots {
-    0% { content: ''; }
-    33% { content: '.'; }
-    66% { content: '..'; }
-    100% { content: '...'; }
-  }
-
-  .hint-section {
-    padding: 12px 20px;
-    border-top: 1px solid var(--border);
-    background: #fafaf8;
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    align-items: center;
-    min-height: 52px;
-  }
-
-  .hint-label {
-    font-size: 11px;
-    font-family: 'DM Mono', monospace;
-    color: var(--text-muted);
-    letter-spacing: 0.06em;
-  }
-
-  .hint-btn {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 12px;
-    padding: 5px 12px;
-    border-radius: 20px;
-    border: 1px solid var(--hint-border);
-    background: var(--hint-bg);
-    color: var(--accent);
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-
-  .hint-btn:hover {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
-  }
-
-  .input-section {
-    padding: 14px 16px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    gap: 8px;
-    align-items: flex-end;
-  }
-
-  textarea {
-    flex: 1;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
-    padding: 9px 12px;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--text);
-    resize: none;
-    min-height: 40px;
-    max-height: 120px;
-    line-height: 1.5;
-    transition: border-color 0.15s;
-  }
-
-  textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-  }
-
+  #chat-box { height: 380px; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth; }
+  .msg { max-width: 82%; font-size: 14px; line-height: 1.7; padding: 11px 15px; border-radius: var(--radius); word-break: keep-all; animation: fadeUp 0.2s ease; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .bot { background: var(--bot-bg); border: 1px solid var(--border); align-self: flex-start; border-bottom-left-radius: 4px; }
+  .user { background: var(--user-bg); color: var(--user-text); align-self: flex-end; border-bottom-right-radius: 4px; }
+  .thinking { color: var(--text-muted); font-style: italic; font-size: 13px; }
+  .dot-anim::after { content: ''; animation: dots 1.2s infinite; }
+  @keyframes dots { 0% { content: ''; } 33% { content: '.'; } 66% { content: '..'; } 100% { content: '...'; } }
+  .hint-section { padding: 12px 20px; border-top: 1px solid var(--border); background: #fafaf8; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; min-height: 52px; }
+  .hint-label { font-size: 11px; font-family: 'DM Mono', monospace; color: var(--text-muted); letter-spacing: 0.06em; }
+  .hint-btn { font-family: 'Noto Sans KR', sans-serif; font-size: 12px; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--hint-border); background: var(--hint-bg); color: var(--accent); cursor: pointer; transition: all 0.15s; }
+  .hint-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
+  .input-section { padding: 14px 16px; border-top: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-end; }
+  textarea { flex: 1; font-family: 'Noto Sans KR', sans-serif; font-size: 14px; padding: 9px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); color: var(--text); resize: none; min-height: 40px; max-height: 120px; line-height: 1.5; transition: border-color 0.15s; }
+  textarea:focus { outline: none; border-color: var(--accent); }
   textarea::placeholder { color: #aaa; }
-
-  #send-btn {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 13px;
-    padding: 10px 18px;
-    border-radius: var(--radius-sm);
-    border: none;
-    background: var(--accent);
-    color: white;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: opacity 0.15s;
-    height: 40px;
-  }
-
+  #send-btn { font-family: 'Noto Sans KR', sans-serif; font-size: 13px; padding: 10px 18px; border-radius: var(--radius-sm); border: none; background: var(--accent); color: white; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; height: 40px; }
   #send-btn:hover { opacity: 0.88; }
   #send-btn:disabled { opacity: 0.4; cursor: default; }
-
-  .empty-state {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 8px;
-    color: var(--text-muted);
-    text-align: center;
-    padding: 20px;
-  }
-
+  .empty-state { flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; color: var(--text-muted); text-align: center; padding: 20px; }
   .empty-icon { font-size: 32px; }
   .empty-text { font-size: 14px; line-height: 1.6; }
-
-  footer {
-    margin-top: 16px;
-    font-size: 12px;
-    color: var(--text-muted);
-    text-align: center;
-  }
+  footer { margin-top: 16px; font-size: 12px; color: var(--text-muted); text-align: center; }
 </style>
 </head>
 <body>
@@ -280,7 +55,7 @@
 <header>
   <p class="header-label">동원중 3학년 · 1단원</p>
   <h1>화학 반응의 법칙 <span>풀이 챗봇</span></h1>
-  <p class="subtitle">정답 대신 힌트를 줍니다. 스스로 풀어보면서 패들렛에 올릴 풀이를 완성해보세요.</p>
+  <p class="subtitle">막히는 부분을 물어보세요. 개념 설명과 함께 풀이를 도와드려요.</p>
 </header>
 
 <div class="card">
@@ -316,7 +91,7 @@
   </div>
 
   <div class="input-section">
-    <textarea id="user-input" rows="1" placeholder="풀이 과정이나 모르는 부분을 입력하세요…"></textarea>
+    <textarea id="user-input" rows="1" placeholder="모르는 부분을 입력하세요…"></textarea>
     <button id="send-btn">보내기</button>
   </div>
 </div>
@@ -327,63 +102,189 @@
 const PROBLEMS = {
   p19: {
     title: "19번 — H₂와 O₂ 반응 (질량 보존 법칙)",
-    context: `문제: 2H₂ + O₂ → 2H₂O 반응에서 실험 I(H₂ 1g, O₂ 8g → H₂O 9g)과 실험 II(H₂ 3g, O₂ 16g → H₂O x)가 주어졌다. 보기: ㄱ. a는 2이다. ㄴ. II에서 반응 후 남은 반응물은 O₂이다. ㄷ. x는 18이다. 정답: ③ (ㄱ, ㄷ). 풀이: 실험 I에서 H₂:O₂:H₂O = 1:8:9이므로 반응비는 2:16:18. a=2. 실험 II는 H₂ 3g과 완전 반응하려면 O₂ 24g 필요 → O₂ 부족, H₂가 남음. ㄴ 틀림. x = 18g.`,
-    hints: ["실험 I의 질량비로 반응 계수 a를 먼저 확인해봐요.", "실험 II에서 H₂ 3g이 완전 반응하려면 O₂가 얼마나 필요한지 계산해봐요.", "x는 질량 보존 법칙으로 구할 수 있어요. 반응한 H₂와 O₂의 합은?"]
+    context: `문제: 2H₂ + O₂ → 2H₂O. 실험 I: H₂ 1g, O₂ 8g → H₂O 9g. 실험 II: H₂ 3g, O₂ 16g → H₂O x.
+보기: ㄱ. a는 2이다. ㄴ. II에서 반응 후 남은 반응물은 O₂이다. ㄷ. x는 18이다.
+정답: ③ ㄱ,ㄷ
+
+핵심 풀이:
+- 반응식 2H₂+O₂→2H₂O에서 a=2 (반응식에서 바로 읽음). ㄱ 맞음.
+- H₂:O₂ 반응 질량비 = 1:8 (실험 I에서 H₂ 1g, O₂ 8g이 딱 맞게 반응함).
+- 실험 II: H₂ 3g이 완전 반응하려면 O₂ 24g 필요. 그런데 O₂는 16g뿐 → O₂가 부족, H₂가 남음. ㄴ 틀림.
+- x: 반응한 H₂는 2g(O₂ 16g과 반응), H₂O = 2+16 = 18g. ㄷ 맞음.`,
+    hints: [
+      "반응 계수 a: 반응식 2H₂+O₂→2H₂O를 보면 a=2예요. 반응식에서 바로 읽으면 돼요.",
+      "실험 I에서 H₂ 1g과 O₂ 8g이 딱 맞게 반응해요. 즉 H₂:O₂ 반응 질량비 = 1:8이에요. 실험 II에서 H₂ 3g과 완전 반응하려면 O₂가 24g 필요한데 16g밖에 없어요. 그러면 뭐가 남을까요?",
+      "x는 질량 보존 법칙으로 구해요. 실험 II에서 O₂ 16g이 한계이므로, 반응한 H₂ = 2g, H₂O = 2+16 = 18g이에요."
+    ]
   },
   p10a: {
     title: "10번 — 기체 반응 부피 모형 (가/나)",
-    context: `문제: (가) 수소+염소→염화수소, (나) 질소+수소→암모니아 반응 부피 모형. 보기: ㄱ. (가)에서 수소와 염소는 1:1 질량비로 반응. ㄴ. 질소와 수소 반응 시 기체 부피 감소. ㄷ. 암모니아 분자 모형. 정답: ② ㄴ. 풀이: ㄱ은 부피비(=분자수비)이지 질량비가 아님. N₂+3H₂→2NH₃: 4부피→2부피로 감소 맞음.`,
-    hints: ["기체 반응의 법칙에서 부피비와 질량비는 다릅니다. ㄱ은 어느 것을 묻고 있나요?", "N₂+H₂→NH₃ 반응식을 완성하고 반응 전후 부피를 비교해보세요.", "같은 온도·압력에서 기체의 부피비 = 분자 수 비예요."]
+    context: `문제: (가) 수소+염소→염화수소, (나) 질소+수소→암모니아.
+보기: ㄱ. (가)에서 수소와 염소는 1:1 질량비로 반응한다. ㄴ. 질소와 수소가 반응하여 암모니아 생성 시 기체 부피 감소. ㄷ. 암모니아 분자 모형은 그림과 같다.
+정답: ② ㄴ
+
+핵심 풀이:
+- (가) H₂+Cl₂→2HCl: 부피비=1:1이지만 질량비는 달라요(H₂=2g/mol, Cl₂=71g/mol). ㄱ 틀림.
+- (나) N₂+3H₂→2NH₃: 반응 전 4부피 → 반응 후 2부피. 부피 감소. ㄴ 맞음.
+- ㄷ: 암모니아는 N 1개+H 3개 구조인데 그림 모형과 맞는지 확인 필요.`,
+    hints: [
+      "기체 반응의 법칙: 같은 온도·압력에서 부피비 = 분자 수 비예요. 부피비와 질량비는 달라요. ㄱ은 질량비를 묻고 있어서 틀렸어요.",
+      "N₂+3H₂→2NH₃에서 반응 전 분자 수 합 = 1+3=4, 반응 후 = 2예요. 부피가 절반으로 줄어요. ㄴ 맞아요.",
+      "암모니아(NH₃)는 N 원자 1개에 H 원자 3개가 결합한 구조예요."
+    ]
   },
   p10b: {
     title: "10번 — 기체 A+B→C 입자 모형",
-    context: `문제: A 1부피 + B 3부피 → C 2부피. 반응 전 용기에 A 1개, B 8개. 반응 후 입자 모형은? 정답: ②. 풀이: A+3B→2C. A 1개 반응에 B 3개 필요 → C 2개 생성. B 5개 남음.`,
-    hints: ["반응비 A:B:C = 1:3:2를 먼저 정리해요.", "그림에서 A와 B의 개수를 각각 세어봐요.", "어느 물질이 먼저 소모될지(한계 반응물) 찾아보세요."]
+    context: `문제: A 1부피+B 3부피→C 2부피. 반응 전 용기에 A 1개, B 8개. 반응 후 입자 모형은?
+정답: ②
+
+핵심 풀이:
+- 반응비 A:B:C = 1:3:2
+- A 1개와 B 3개가 반응 → C 2개 생성. B는 8-3=5개 남음.
+- 반응 후: C 2개 + B 5개`,
+    hints: [
+      "반응비 A:B:C = 1:3:2예요. A 1개가 반응하면 B는 3개 소모되고 C 2개가 생겨요.",
+      "그림에서 A 1개, B 8개예요. A가 1개뿐이라 A가 한계 반응물이에요. A 1개 전부 반응 → B 3개 소모, C 2개 생성, B 5개 남아요.",
+      "정답은 C 2개 + B 5개가 있는 그림이에요. ②번이에요."
+    ]
   },
   p10c: {
     title: "10번 — Mg+O₂→MgO 질량비",
-    context: `문제: 2Mg+O₂→2MgO. (가) Mg 3g, O₂ 3g → 남은 물질 1g. (나) Mg 7g, O₂ 4g → 남은 물질 1g. 보기: ㄱ. a=1. ㄴ. MgO에서 Mg:O=3:2. ㄷ. 남은 반응물 종류 (가)=(나). 정답: ② ㄴ. 풀이: Mg:O₂ 반응비=3:2. (가) O₂ 2g이 반응, O₂ 1g 남음. (나) Mg 6g 반응, Mg 1g 남음. ㄷ 틀림. a=2이므로 ㄱ 틀림.`,
-    hints: ["(가)에서 Mg:O₂ 반응 질량비를 구해 어느 물질이 남는지 따져봐요.", "MgO에서 Mg:O 질량비는 원자량 Mg=24, O=16을 이용해요.", "(나)에서 남은 반응물의 종류가 (가)와 같은지 비교해보세요."]
+    context: `문제: 2Mg+O₂→2MgO. (가) Mg 3g, O₂ 3g → 남은 물질 1g. (나) Mg 7g, O₂ 4g → 남은 물질 1g.
+보기: ㄱ. a=1. ㄴ. MgO에서 Mg:O=3:2. ㄷ. 남은 반응물 종류 (가)=(나).
+정답: ② ㄴ
+
+핵심 풀이:
+- (가) 총 6g에서 1g 남으면 MgO 5g 생성. Mg:O₂ = 3:2 반응(Mg 3g + O₂ 2g → MgO 5g). O₂ 1g 남음.
+- 반응식 2Mg+O₂→2MgO에서 a=2. ㄱ 틀림.
+- MgO에서 Mg:O = 3:2. ㄴ 맞음.
+- (나) Mg 7g, O₂ 4g: Mg 6g+O₂ 4g 반응 → Mg 1g 남음. (가)는 O₂ 남음, (나)는 Mg 남음. ㄷ 틀림.`,
+    hints: [
+      "반응식 2Mg+O₂→2MgO에서 a=2예요. ㄱ은 틀렸어요.",
+      "(가)에서 총 질량 6g 중 1g이 남으므로 MgO 5g 생성. Mg 3g + O₂ 2g이 반응한 거예요. O₂ 1g 남아요. Mg:O₂ 반응 질량비 = 3:2예요.",
+      "(나) Mg 7g, O₂ 4g: Mg 6g이 O₂ 4g과 반응(3:2 비율) → Mg 1g 남음. (가)는 O₂가 남고 (나)는 Mg이 남으므로 ㄷ 틀렸어요."
+    ]
   },
   p16: {
     title: "16번 — CO+O₂→CO₂ 분자 수 비",
-    context: `문제: CO에 O₂를 단계적으로 추가. 과정 (나)에서 CO:CO₂ 분자 수 비는? 정답: ① 1:1. 풀이: 2CO+O₂→2CO₂. (나)는 O₂를 x g 추가한 중간 상태. (다)에서 O₂ 2x g으로 완전 반응. (나)에서 반응한 CO = 전체의 절반 → CO:CO₂=1:1.`,
-    hints: ["2CO+O₂→2CO₂ 반응비를 먼저 확인해요.", "(가)에서 CO 분자 개수를 세고, (다)까지 CO₂가 몇 개 생성되는지 확인해봐요.", "(나)의 O₂ 양이 (다)의 절반임을 이용해봐요."]
+    context: `문제: CO에 O₂를 단계적으로 추가. (가) CO 4개. (나) O₂ x g 추가 중간 상태. (다) O₂ 2x g 완전 반응 → CO₂ 10개 아님, 분자 모형으로 CO:CO₂ 비 확인.
+정답: ① 1:1
+
+핵심 풀이:
+- 2CO+O₂→2CO₂
+- (가) CO 4개(C 4개, O 4개). (다) O₂가 (나)의 2배 → (나)에서 반응한 CO의 2배가 (다)에서 반응.
+- (나)에서 O₂ x g 추가 시 CO 2개 반응 → CO₂ 2개, CO 2개 남음. CO:CO₂ = 2:2 = 1:1.`,
+    hints: [
+      "2CO+O₂→2CO₂ 반응에서 CO 2개당 O₂ 1개가 반응해요.",
+      "(가) CO 4개. (나)에서 O₂ x g, (다)에서 O₂ 2x g을 넣어요. (다)가 (나)의 2배 O₂를 넣으므로 (나)는 절반만 반응한 상태예요.",
+      "(나)에서 CO 4개 중 2개 반응 → CO₂ 2개 생성, CO 2개 남음. CO:CO₂ = 2:2 = 1:1이에요."
+    ]
   },
   p17: {
     title: "17번 — N₂+H₂→NH₃ 부피 변화",
-    context: `문제: N₂ 1L, H₂ 4L 반응 후 X(N₂ or H₂)와 NH₃ 혼합. 보기: ㄱ. N₂+4H₂→3NH₃. ㄴ. X는 H₂. ㄷ. 반응 후 NH₃ 분자 수 = X의 2배. 정답: ⑤ ㄴ,ㄷ. 풀이: N₂+3H₂→2NH₃. N₂ 1L 반응에 H₂ 3L 필요. H₂ 1L 남음, NH₃ 2L 생성. NH₃:H₂=2:1.`,
-    hints: ["올바른 반응식은 N₂+3H₂→2NH₃예요. ㄱ을 다시 확인해봐요.", "N₂ 1L가 완전 반응할 때 H₂는 몇 L가 필요한지 계산해봐요.", "반응 후 남은 H₂와 생성된 NH₃ 부피를 각각 구해서 비교해요."]
+    context: `문제: N₂ 1L, H₂ 4L 반응 후 X와 NH₃ 혼합.
+보기: ㄱ. N₂+4H₂→3NH₃. ㄴ. X는 H₂. ㄷ. 반응 후 NH₃:X = 2:1.
+정답: ⑤ ㄴ,ㄷ
+
+핵심 풀이:
+- 올바른 반응식: N₂+3H₂→2NH₃. ㄱ 틀림.
+- N₂ 1L 반응에 H₂ 3L 필요. H₂ 4L에서 3L 반응 → H₂ 1L 남음. X=H₂. ㄴ 맞음.
+- NH₃ 2L 생성, H₂ 1L 남음. NH₃:H₂ = 2:1. ㄷ 맞음.`,
+    hints: [
+      "N₂와 H₂가 반응하여 NH₃가 되는 올바른 반응식은 N₂+3H₂→2NH₃예요. ㄱ의 N₂+4H₂→3NH₃는 틀렸어요.",
+      "N₂ 1L가 반응하면 H₂ 3L 소모, NH₃ 2L 생성. H₂ 4L 중 3L 반응 → H₂ 1L 남아요. X=H₂.",
+      "반응 후 NH₃ 2L, H₂ 1L. NH₃:H₂ = 2:1. ㄷ 맞아요. 정답은 ⑤ ㄴ,ㄷ이에요."
+    ]
   },
   p18: {
     title: "18번 — NaCl+AgNO₃ 앙금 생성",
-    context: `문제: NaCl 3mL에 AgNO₃를 넣을 때 앙금: 5mL→a, 10→2a, 15→2.4a, 20→2.4a. NaCl 4mL + AgNO₃ 12mL → 앙금은? 정답: ② 2.4a. 풀이: NaCl 3mL와 AgNO₃ 12mL가 완전 반응(1:4 비율). NaCl 4mL에는 AgNO₃ 16mL 필요. 12mL만 있으므로 AgNO₃ 한계 반응물. 12mL → 2.4a.`,
-    hints: ["표에서 앙금 질량이 더 이상 증가하지 않는 AgNO₃ 부피를 찾아봐요.", "NaCl 3mL와 완전 반응하는 AgNO₃ 부피는 몇 mL인가요?", "NaCl 4mL에 필요한 AgNO₃ 부피를 구하고, 12mL와 비교해봐요."]
+    context: `문제: NaCl 3mL에 AgNO₃를 넣을 때 앙금: 5mL→a, 10→2a, 15→2.4a, 20→2.4a, 25→2.4a. NaCl 4mL + AgNO₃ 12mL → 앙금은?
+정답: ② 2.4a
+
+핵심 풀이:
+- 15mL부터 앙금이 일정 → NaCl 3mL와 AgNO₃ 12mL가 완전 반응. NaCl:AgNO₃ = 3:12 = 1:4.
+- NaCl 4mL에 필요한 AgNO₃ = 16mL. 그런데 12mL만 있음 → AgNO₃ 한계 반응물.
+- AgNO₃ 12mL → NaCl 3mL 분량과 같으므로 앙금 2.4a.`,
+    hints: [
+      "표에서 AgNO₃ 15mL부터 앙금이 2.4a로 일정해져요. NaCl 3mL와 완전 반응하는 AgNO₃는 12mL예요(15mL에서 완결).",
+      "NaCl:AgNO₃ 반응 부피비 = 3:12 = 1:4예요. NaCl 4mL에는 AgNO₃ 16mL가 필요해요.",
+      "AgNO₃가 12mL뿐이므로 AgNO₃가 먼저 소모돼요. 12mL는 NaCl 3mL와 완전 반응할 때의 양이므로 앙금 = 2.4a예요."
+    ]
   },
   p20: {
     title: "20번 — XO와 X₂O 질량 그래프",
-    context: `문제: X의 질량에 따른 XO, X₂O 질량 그래프. XO에서 X:O 질량비는? 정답: ⑤ 4:1. 풀이: XO 2개 → O 원자량 0.8g. X 원자량 3.2g. X:O=3.2:0.8=4:1.`,
-    hints: ["두 그래프의 기울기 차이가 O 포함 비율 차이를 의미해요.", "X₂O의 그래프에서 X:O 질량비를 먼저 구해봐요.", "XO에서 X 원자 수 = O 원자 수임을 이용해 X:O 질량비를 구해요."]
+    context: `문제: X의 질량에 따른 XO, X₂O 질량 그래프. XO에서 X:O 질량비는?
+정답: ⑤ 4:1
+
+핵심 풀이:
+- 그래프에서 X₂O: X 6.4g → 산화물 7.2g → O = 0.8g. X 원자 2개 : O 원자 1개 = 6.4:0.8 = 8:1. X 원자 1개 질량 = 3.2g(상대적).
+- XO: X 원자 1개 : O 원자 1개 = 3.2:0.8 = 4:1.`,
+    hints: [
+      "X₂O 그래프에서 X 6.4g일 때 산화물 7.2g이에요. O = 7.2-6.4 = 0.8g. X₂O는 X 원자 2개당 O 1개이므로 X 원자 1개 질량 비율 = 3.2, O = 0.8.",
+      "XO는 X 원자 1개당 O 원자 1개예요. X 원자 1개 질량 : O 원자 1개 질량 = 3.2:0.8 = 4:1.",
+      "정답은 ⑤ 4:1이에요."
+    ]
   },
   p10x: {
     title: "10번 — X+Y→Z 질량비",
-    context: `문제: 실험 I: X 1g, Y 6g → Z 5g, 남은 물질 2g. 실험 II: X 3g, Y xg → Z 10g. x는? 정답: ② 8. 풀이: 실험 I에서 Y 4g 반응(6-2=4). X:Y:Z=1:4:5. 실험 II Z 10g = 2배. X 2g, Y 8g 필요. X 3g이므로 X 남음. x=8.`,
-    hints: ["실험 I에서 남은 2g이 X인지 Y인지 먼저 판단해봐요.", "반응한 X, Y, Z의 질량비를 실험 I에서 구해봐요.", "실험 II에서 Z 10g을 만들려면 X, Y가 각각 얼마나 필요한지 계산해요."]
+    context: `문제: 실험 I: X 1g, Y 6g → Z 5g, 남은 물질 2g. 실험 II: X 3g, Y xg → Z 10g. x는?
+정답: ② 8
+
+핵심 풀이:
+- 실험 I: 총 7g 투입, Z 5g 생성, 2g 남음 → 반응에 참여한 물질 = 5g.
+- Y가 남은 경우: X 1g, Y 4g 반응 → Z 5g. X:Y:Z = 1:4:5.
+- 실험 II: Z 10g = 2배. X 2g, Y 8g 필요. X 3g 있으므로 X 남음. x=8.`,
+    hints: [
+      "실험 I에서 Z 5g 생성, 남은 물질 2g. 2g은 Y가 남은 거예요(X가 한계 반응물). 반응한 X:Y:Z = 1:(6-2):5 = 1:4:5.",
+      "실험 II에서 Z 10g은 실험 I의 2배. X 2g, Y 8g이 필요해요.",
+      "X가 3g 있으므로 X는 충분, Y = 8g이 필요. x=8이에요."
+    ]
   },
   p11a: {
     title: "11번 — A₂+B₂→AB 입자 모형",
-    context: `문제: 생성물은 AB. A₂ 4개, B₂ 2개. 반응 완결 후 기체 분자 2가지. 반응 후 입자 모형은? 정답: ④. 풀이: A₂+B₂→2AB. B₂ 2개 반응에 A₂ 2개 필요. A₂ 2개 남음, AB 4개 생성. 2가지(AB, A₂).`,
-    hints: ["A₂+B₂→2AB 반응에서 반응비는 A₂:B₂:AB = 1:1:2예요.", "그림에서 A₂와 B₂의 개수를 각각 세어봐요.", "어느 쪽이 한계 반응물인지 확인하고, 남은 물질과 생성물을 구해봐요."]
+    context: `문제: 생성물은 AB. 용기에 A₂(큰 원) 4개, B₂(작은 원) 2개. 반응 완결 후 기체 분자 2가지. 반응 후 입자 모형은?
+정답: ④
+
+핵심 풀이:
+- A₂+B₂→2AB 반응비 1:1:2.
+- B₂ 2개 반응 시 A₂ 2개 필요 → A₂ 2개 남음, AB 4개 생성.
+- 반응 후: AB 4개 + A₂ 2개 = 2가지 분자. ④번.`,
+    hints: [
+      "반응식: A₂+B₂→2AB. A₂:B₂ = 1:1로 반응해요.",
+      "용기에 A₂ 4개, B₂ 2개. B₂가 2개뿐이므로 B₂가 한계 반응물이에요. B₂ 2개 반응에 A₂ 2개 소모 → A₂ 2개 남음, AB 4개 생성.",
+      "반응 후 AB 4개 + A₂ 2개. 2가지 분자가 남아요. ④번이 정답이에요."
+    ]
   },
   p11b: {
     title: "11번 — Mg 산화 실험 가설 검증",
-    context: `문제: Mg 산화 그래프에서 Mg 3g일 때 산화물 5g. 보기: ㄱ. w=3. ㄴ. Mg:O=3:2. ㄷ. 가설 ㉠='화합물을 구성하는 원소의 질량비는 일정하다.' 정답: ④ ㄴ,ㄷ. 풀이: Mg 3g + O 2g = 5g. Mg:O=3:2. w=2이므로 ㄱ 틀림.`,
-    hints: ["그래프에서 Mg 3g일 때 산화물 질량을 읽어봐요.", "w는 산소의 질량이에요. Mg 3g과 반응한 O의 질량은 얼마인가요?", "Mg:O 질량비를 구한 뒤 ㄴ을 판단하고, 실험의 목적(가설)이 뭔지 생각해봐요."]
+    context: `문제: Mg 산화 그래프(Mg 3g → 산화물 5g). 보기: ㄱ. w=3. ㄴ. Mg:O=3:2. ㄷ. 가설='화합물을 구성하는 원소의 질량비는 일정하다.'
+정답: ④ ㄴ,ㄷ
+
+핵심 풀이:
+- Mg 3g + O ?g = 5g → O = 2g. w=2(산소 질량). ㄱ 틀림.
+- Mg:O = 3:2. ㄴ 맞음.
+- 이 실험은 Mg 양을 바꿔가며 산화물 질량을 측정 → 일정 성분비 법칙 확인. ㄷ 맞음.`,
+    hints: [
+      "그래프에서 Mg 3g일 때 산화물 5g이에요. 반응한 O = 5-3 = 2g. w는 산소 질량이므로 w=2예요. ㄱ 틀렸어요.",
+      "Mg:O = 3:2예요. ㄴ 맞아요.",
+      "이 실험은 Mg의 양을 달리 해도 항상 Mg:O=3:2로 일정하다는 걸 보여줘요. 가설은 '화합물을 구성하는 원소의 질량비는 일정하다'가 맞아요. 정답 ④."
+    ]
   },
   p24: {
     title: "24번 — Mg·Cu 산화 그래프 질량비 비교",
-    context: `문제: Mg→산화물 그래프(3g→5g), Cu→산화물 그래프(4g→5g). 보기: ㄱ. 산화Mg 구성 원소 질량비 일정. ㄴ. 산화구리(II) 25g에 Cu 20g. ㄷ. 같은 질량 O와 결합하는 금속: Cu>Mg. 정답: ⑤ ㄱ,ㄴ,ㄷ. 풀이: Mg:O=3:2, Cu:O=4:1. ㄴ CuO 25g→Cu 20g. ㄷ O 1g당 Mg 1.5g, Cu 4g.`,
-    hints: ["그래프에서 Mg와 Cu 각각의 금속:산소 질량비를 읽어봐요.", "ㄴ: CuO에서 Cu:O 질량비를 구하고 25g에 적용해봐요.", "ㄷ: O 1g과 반응하는 각 금속의 질량을 비교해봐요."]
+    context: `문제: Mg(3g→5g), Cu(4g→5g) 산화 그래프. 보기: ㄱ. 산화Mg 구성 원소 질량비 일정. ㄴ. 산화구리(II) 25g에 Cu 20g. ㄷ. 같은 질량 O와 결합하는 금속: Cu>Mg.
+정답: ⑤ ㄱ,ㄴ,ㄷ
+
+핵심 풀이:
+- Mg:O = 3:2, Cu:O = 4:1.
+- ㄱ: 그래프가 직선 → 질량비 일정. 맞음.
+- ㄴ: CuO에서 Cu:O=4:1. 산화구리 25g → Cu = 25×(4/5) = 20g. 맞음.
+- ㄷ: O 1g당 Mg 1.5g, Cu 4g 결합. Cu>Mg. 맞음.`,
+    hints: [
+      "그래프에서 Mg 3g → 산화물 5g: O=2g. Mg:O=3:2. Cu 4g → 산화물 5g: O=1g. Cu:O=4:1.",
+      "ㄴ: CuO(Cu:O=4:1)에서 산화구리 25g이면 Cu = 25×4/5 = 20g이에요. ㄴ 맞아요.",
+      "ㄷ: O 1g과 결합하는 Mg = 1.5g, Cu = 4g. Cu가 더 많이 결합해요. 정답 ⑤ 모두 맞아요."
+    ]
   }
 };
 
@@ -421,7 +322,7 @@ function showHints(hints) {
       if (thinking) return;
       addMsg(`힌트 ${i + 1}단계 요청`, 'user');
       history.push({ role: 'user', content: `힌트 ${i+1}번 주세요.` });
-      callClaude(`힌트 ${i+1}: "${h}" — 이 내용을 바탕으로 직접 답은 알려주지 말고, 학생이 스스로 생각할 수 있게 유도하는 짧은 질문 1~2개만 해주세요.`);
+      callAPI(`다음 내용을 학생에게 친절하게 설명해줘. 개념과 계산 과정을 포함해서 이해하기 쉽게: "${h}"`);
     });
     hintSection.appendChild(btn);
   });
@@ -433,34 +334,33 @@ problemSelect.addEventListener('change', () => {
   currentProblem = PROBLEMS[key];
   history = [];
   chatBox.innerHTML = '';
-  addMsg(`${currentProblem.title} 문제네요. 어디까지 풀었는지, 또는 막힌 부분을 말해줘요. 힌트가 필요하면 아래 버튼을 눌러도 돼요.`, 'bot');
+  addMsg(`${currentProblem.title} 문제네요. 어느 보기가 헷갈리는지, 또는 모르는 개념이 있으면 말해줘요. 힌트 버튼을 눌러도 돼요.`, 'bot');
   showHints(currentProblem.hints);
 });
 
-async function callClaude(userMsg) {
+async function callAPI(userMsg) {
   if (thinking) return;
   thinking = true;
   sendBtn.disabled = true;
 
   const thinkDiv = addMsg('...', 'bot');
-
   history.push({ role: 'user', content: userMsg });
 
-  const system = `너는 중학교 3학년 화학 수업의 문제 풀이 도우미야. 학생이 스스로 풀 수 있도록 돕는 게 목표야.
+  const system = `너는 중학교 3학년 화학 수업 풀이 도우미야. 학생 수준에 맞게 쉽게 설명하는 게 목표야.
 
 현재 문제: ${currentProblem.title}
-문제 정보: ${currentProblem.context}
+문제 정보 및 풀이: ${currentProblem.context}
 
 규칙:
-1. 절대 정답이나 풀이 전체를 알려주지 마.
-2. 학생이 막힌 지점을 파악하고, 그 부분만 유도하는 질문을 해.
-3. 답변은 2~3문장으로 짧게 유지해.
-4. 학생이 올바른 방향으로 생각하면 칭찬하고 다음 단계로 유도해.
-5. 한국어로 친근하게 답변해.
-6. 수식은 텍스트로 간단히 표현해 (H2O, Mg:O=3:2 등).`;
+1. 학생이 이해 못 하면 답을 직접 알려줘도 돼. 개념 설명을 먼저 하고, 풀이 과정을 보여줘.
+2. 어려운 용어는 쉽게 풀어서 설명해.
+3. 계산이 필요하면 단계별로 보여줘.
+4. 답변은 너무 길지 않게, 3~5문장 이내로.
+5. 한국어로 친근하게 말해줘.
+6. 수식은 텍스트로 표현해 (H2O, Mg:O=3:2 등).`;
 
   try {
-    const WORKER_URL = 'https://dwchatbot.yoonha1029.workers.dev'; // Cloudflare Worker URL 입력
+    const WORKER_URL = 'https://dwchatbot.yoonha1029.workers.dev';
     const res = await fetch(WORKER_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -496,7 +396,7 @@ sendBtn.addEventListener('click', () => {
   }
   addMsg(text, 'user');
   userInput.value = '';
-  callClaude(text);
+  callAPI(text);
 });
 
 userInput.addEventListener('keydown', e => {
